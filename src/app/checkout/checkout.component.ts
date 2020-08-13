@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -10,9 +9,7 @@ export class CheckoutComponent implements OnInit {
 
   productsInCart: Array<any> = [];
 
-  constructor(
-    readonly router: Router
-    ) {}
+  constructor() {}
 
   ngOnInit(): void {
   }
