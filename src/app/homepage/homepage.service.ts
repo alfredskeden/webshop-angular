@@ -16,6 +16,24 @@ export class HomepageService extends ResourceService<any> {
     super(httpClient);
     /** @todo: make dynamic for future apps (whats the best way?) */
     this.BASE_API_URL = 'https://medieinstitutet-wie-products.azurewebsites.net/api';
+    this.endpoint = 'products';
+  }
+}
+
+/**
+ * Injectable for HomepageService
+ */
+@Injectable()
+export class CategoriesService extends ResourceService<any> {
+
+  /**
+   * Constructor for ProcessService
+   * @param httpClient HttpClient
+   */
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
+    /** @todo: make dynamic for future apps (whats the best way?) */
+    this.BASE_API_URL = 'https://medieinstitutet-wie-products.azurewebsites.net/api';
     this.endpoint = 'categories';
   }
 }

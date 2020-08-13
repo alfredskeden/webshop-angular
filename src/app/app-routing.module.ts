@@ -1,24 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
-import { CheckoutComponent } from './homepage/checkout/checkout.component';
-import { CategoryComponent } from './homepage/category/category.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
-  {
-    path: '', component: HomepageComponent,
-    children: [
-      {
-        path: 'check-out', component: CheckoutComponent
-      },
-      {
-        path: '', component: CategoryComponent
-      },
-      {
-        path: 'category/:categoryId', component: CategoryComponent
-      }
-    ]
-  },
+  { path: '', component: HomepageComponent},
+  { path: 'category/:categoryId', component: HomepageComponent },
+  { path: 'check-out', component: CheckoutComponent },
   { path: '**', redirectTo: '' }
 ];
 

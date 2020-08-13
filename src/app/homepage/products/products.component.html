@@ -1,0 +1,16 @@
+
+<div class="row">
+  <div *ngFor="let product of filterProducts; let i = index" class="col-6 mt-2">
+    <ul>
+      <li><h2>{{ product.name }}</h2></li>
+      <li>Description: {{ product.description }}</li>
+      <li>Year: {{ product.year }}</li>
+      <li>Price: ${{ product.price }}</li>
+      <li>Genre: <span *ngFor="let genres of product.productCategory; let last = last">{{ genres.category }}{{ !last ? ', ' : '' }}</span></li>
+    </ul>
+    <img class="img-fluid" [alt]="product.name" [src]="product.imageUrl">
+    <button type="button" class="btn" [ngClass]="{'btn-success': !product.hasBeenAddedToCart, 'btn-danger': product.hasBeenAddedToCart}" (click)="addToCart(product)">
+      {{ product.hasBeenAddedToCart ? 'Remove from cart' : 'Add to cart' }}
+    </button>
+  </div>
+</div>

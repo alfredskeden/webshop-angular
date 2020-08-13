@@ -1,4 +1,3 @@
-<a [routerLink]="['/']">
-  All products
-</a>
-<router-outlet></router-outlet>
+<app-header [categories]="categories" [productsInCart]="productsInCart" [amountInCart]="calcAmountInCart()"></app-header>
+
+<app-products [products]="products" (addToCartOutput)="addProductToCart($event)"></app-products>

@@ -6,19 +6,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { CheckoutComponent } from './homepage/checkout/checkout.component';
-import { CategoryComponent } from './homepage/category/category.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
-import { HomepageService } from './homepage/homepage.service';
-import { CategoryService } from './homepage/category/category.service';
+import { HomepageService, CategoriesService } from './homepage/homepage.service';
 import { ResourceService } from './shared/resource.service';
+import { HeaderComponent } from './shared/header/header.component';
+import { ProductsComponent } from './homepage/products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     CheckoutComponent,
-    CategoryComponent
+    HeaderComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,7 @@ import { ResourceService } from './shared/resource.service';
   ],
   providers: [
     HomepageService,
-    CategoryService,
+    CategoriesService,
     ResourceService
   ],
   bootstrap: [AppComponent]
