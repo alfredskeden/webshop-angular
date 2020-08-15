@@ -79,7 +79,6 @@ export class CheckoutComponent implements OnInit {
     }, () => {
       this.cookieService.delete('cart');
       this.productsInCart = [];
-      this.checkoutForm.reset();
     })
   }
 

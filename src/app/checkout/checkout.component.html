@@ -4,13 +4,13 @@
     <h1>check-out</h1>
     <a [routerLink]="'/'">Go back to products page</a>
   </div>
-  <div class="col-12">
+  <div class="col-10 offset-1">
     <h2>Checkout info</h2>
     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
 
       <div>
         <label for="name" class="mr-2">Name: </label>
-        <input id="name" type="text" formControlName="name" value="stuff">
+        <input id="name" type="text" formControlName="name">
       </div>
     
       <div>
@@ -21,6 +21,10 @@
       <div>
         <label for="paymentMethod" class="mr-2">payment method: </label>
         <input id="paymentMethod" type="text" formControlName="paymentMethod">
+      </div>
+
+      <div class="mb-2">
+        <span>Total price: {{ calcAmountInCart() }}</span>
       </div>
 
       <button class="btn" [ngClass]="{'btn-warning': !this.productsInCart.length, 'btn-success': this.productsInCart.length}"

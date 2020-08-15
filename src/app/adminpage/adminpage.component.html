@@ -1,13 +1,25 @@
 <a [routerLink]="['/']"> Back to homepage </a>
-<h1>all your orders orders</h1>
+<h1>All your orders orders</h1>
+
+<form [formGroup]="searchForm">
+    <div>
+        <label for="name" class="mr-2">Name: </label>
+        <input id="name" type="text" formControlName="name">
+    </div>
+
+    <div>
+        <label for="email" class="mr-2">email: </label>
+        <input id="email" type="text" formControlName="email">
+    </div>
+</form>
 
 <div class="row">
-    <div class="col-4" *ngFor="let order of orders">
+    <div class="col-4" *ngFor="let order of ordersFromName">
         <ul>
             <li>created: {{ order.created }}</li>
             <li>createdBy: {{ order.createdBy }}</li>
             <li>paymentMethod: {{ order.paymentMethod }}</li>
-            <li>totalPrice: {{ order.totalPrice }}</li>
+            <li>totalPrice: ${{ order.totalPrice }}</li>
             <button type="button" class="btn btn-danger" (click)="cancelOrder(order.id)">Cancel order</button>
         </ul>
     </div>

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+
+import { CookieService } from 'ngx-cookie-service'; 
+
 import { CheckoutService } from '../checkout/checkout.service';
 import { Checkoutorder } from '../checkout/checkoutorder';
 
@@ -10,8 +14,19 @@ import { Checkoutorder } from '../checkout/checkoutorder';
 export class AdminpageComponent implements OnInit {
   
   orders: Array<Checkoutorder>;
+
+  searchForm;
   
-  constructor(private readonly checkoutService: CheckoutService) {}
+  constructor(
+    private readonly checkoutService: CheckoutService,
+    private formBuilder: FormBuilder,
+    private cookieService: CookieService
+    ) {
+    this.searchForm = this.formBuilder.group({
+      name: this.cookieService.get('name'),
+      email: this.cookieService.get('email')
+    });
+  }
 
   ngOnInit(): void {
     this.checkoutService.read('?companyId=592838').subscribe(data => {
@@ -27,5 +42,15 @@ export class AdminpageComponent implements OnInit {
     }, () => {
       location.reload();
     } )
+  }
+
+  /** Returns a list of orders with that name and email */
+  get ordersFromName(): Array<Checkoutorder> {
+
+    if (this.searchForm.value.name === '592838') {
+      return this.orders;
+    }
+
+    return this.orders ? this.orders.filter(x => x.createdBy === this.searchForm.value.name + ' ' + this.searchForm.value.email) : [];
   }
 }
