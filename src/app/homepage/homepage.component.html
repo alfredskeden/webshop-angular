@@ -1,3 +1,10 @@
-<app-header [categories]="categories" [productsInCart]="productsInCart" [amountInCart]="calcAmountInCart()"></app-header>
 
-<app-products [products]="products" (addToCartOutput)="addProductToCart($event)"></app-products>
+<ng-container *ngIf="!loading">
+    <app-header [categories]="categories" [productsInCart]="productsInCart" [amountInCart]="calcAmountInCart()"></app-header>
+
+    <app-products [products]="products" (addToCartOutput)="addProductToCart($event)"></app-products>
+</ng-container>
+
+<ng-container *ngIf="loading">
+    <h1 class="text-center">Loading</h1>
+</ng-container>

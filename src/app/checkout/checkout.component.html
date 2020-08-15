@@ -1,21 +1,46 @@
-<div class="row justify-content-center">
+<div class="row">
   <div class="col-12">
+    <a [routerLink]="['/admin']"> check my orders </a>
     <h1>check-out</h1>
-    <a [routerLink]="'/'">Go back to products</a>
+    <a [routerLink]="'/'">Go back to products page</a>
   </div>
   <div class="col-12">
-    <h2>Products in your basked</h2>
-    <ng-container *ngFor="let productInCart of productsInCart; let i = index">
-      <div class="col-3">
-        <ul>
-          <li><h2>{{ productInCart.name }}</h2></li>
-          <li>Description: {{ productInCart.description }}</li>
-          <li>Year: {{ productInCart.year }}</li>
-          <li>Price: ${{ productInCart.price }}</li>
-          <li>Genre: <span *ngFor="let genres of productInCart.productCategory; let last = last">{{ genres.category }}{{ !last ? ', ' : '' }}</span></li>
-        </ul>
-        <img class="img-fluid" [alt]="productInCart.name" [src]="productInCart.imageUrl">
+    <h2>Checkout info</h2>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+      <div>
+        <label for="name" class="mr-2">Name: </label>
+        <input id="name" type="text" formControlName="name" value="stuff">
       </div>
-    </ng-container>
+    
+      <div>
+        <label for="email" class="mr-2">email: </label>
+        <input id="email" type="text" formControlName="email">
+      </div>
+
+      <div>
+        <label for="paymentMethod" class="mr-2">payment method: </label>
+        <input id="paymentMethod" type="text" formControlName="paymentMethod">
+      </div>
+
+      <button class="btn" [ngClass]="{'btn-warning': !this.productsInCart.length, 'btn-success': this.productsInCart.length}"
+              type="submit">Purchase</button>
+    
+    </form>
+  </div>
+  <div *ngIf="!loading" class="col-12">
+    <h2>Products in your basked</h2>
+      <div class="row">
+      <ng-container *ngFor="let product of productFromProducts; let i = index">
+        <div class="col-6">
+          <ul>
+            <li><h2>{{ product.name }}</h2></li>
+            <li>Year: {{ product.year }}</li>
+            <li>Price: ${{ product.price }}</li>
+          </ul>
+          <img class="img-fluid" [alt]="product.name" [src]="product.imageUrl" height="100" width="50">
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>

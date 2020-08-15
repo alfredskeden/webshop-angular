@@ -30,8 +30,8 @@ export class ResourceService<T> {
    * returns an Observable of the requested endpoint
    * @return Observable<T>
    */
-  read(): Observable<T> {
-    return this.httpClient.get<T>(`${this.BASE_API_URL}/${this.endpoint}`);
+  read(additionalParameters?: string): Observable<T> {
+    return this.httpClient.get<T>(`${this.BASE_API_URL}/${this.endpoint}${additionalParameters ? additionalParameters : ''}`);
   }
 
   /**

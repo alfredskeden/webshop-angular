@@ -1,0 +1,14 @@
+<a [routerLink]="['/']"> Back to homepage </a>
+<h1>all your orders orders</h1>
+
+<div class="row">
+    <div class="col-4" *ngFor="let order of orders">
+        <ul>
+            <li>created: {{ order.created }}</li>
+            <li>createdBy: {{ order.createdBy }}</li>
+            <li>paymentMethod: {{ order.paymentMethod }}</li>
+            <li>totalPrice: {{ order.totalPrice }}</li>
+            <button type="button" class="btn btn-danger" (click)="cancelOrder(order.id)">Cancel order</button>
+        </ul>
+    </div>
+</div>

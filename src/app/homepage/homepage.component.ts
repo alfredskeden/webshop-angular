@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { CookieService } from 'ngx-cookie-service'; 
+
 import { HomepageService, CategoriesService } from './homepage.service';
+import { Checkoutorderproduct } from '../checkout/checkoutorderproduct';
 
 @Component({
   selector: 'app-homepage',
@@ -14,13 +17,18 @@ export class HomepageComponent implements OnInit {
 
   categories: Array<any>;
 
-  productsInCart: Array<any> = [];
+  productsInCart: Array<Checkoutorderproduct> = [];
+
+  loading: boolean = true;
 
   constructor(
     private readonly categoryService: CategoriesService,
     private readonly homepageService: HomepageService,
+    private cookieService: CookieService,
     private readonly router: Router
-    ) {}
+    ) {
+      this.productsInCart = this.cookieService.get('cart') ? JSON.parse(this.cookieService.get('cart')) : [];
+    }
 
   ngOnInit(): void {
 
@@ -37,6 +45,9 @@ export class HomepageComponent implements OnInit {
       }, err => {
         console.log(err);
       }, () => {
+
+        this.setAllhasBeenAddedToCart();
+
         /** can be done sooo much better :D */
         for (const product of this.products) {
           for (const category of product.productCategory) {
@@ -47,28 +58,50 @@ export class HomepageComponent implements OnInit {
             }
           }
         }
+
+        this.loading = false;
       });
     });
   }
 
-/** adds the products to cart */
-  addProductToCart(value): void {
-    if (this.productsInCart.find(x => x.id === value.id)) {
-      this.productsInCart.splice(this.productsInCart.indexOf(value));
-    } else {
-      this.productsInCart.push(value);
+  /** Method to set products hasBeenAddedToCart if they have been added before */
+  setAllhasBeenAddedToCart(): void {
+    if (this.productsInCart && this.productsInCart.length) {
+      for (const productInCart of this.productsInCart) {
+        this.products.find(x => x.id === productInCart.productId).hasBeenAddedToCart = !this.products.find(x => x.id === productInCart.productId).hasBeenAddedToCart;
+      }
     }
+  }
+
+  /** adds the products to cart */
+  addProductToCart(value): void {
+
+    /** find index and removes it if it dosnt exist add it */
+    const index = this.productsInCart.findIndex(x => x.productId === value.id);
+    if (index > -1) {
+      this.productsInCart.splice(index, 1);
+    } else {
+      const productTemp = new Checkoutorderproduct();
+      productTemp.amount = value.price;
+      productTemp.productId = value.id;
+
+      this.productsInCart.push(productTemp);
+    }
+
+    /** Save again to cookie cart */
+    this.cookieService.set('cart', JSON.stringify(this.productsInCart));
 
     /** Toggles the button to correct color on that product */
     this.products.find(x => x.id === value.id).hasBeenAddedToCart = !this.products.find(x => x.id === value.id).hasBeenAddedToCart;
   }
 
+  /** Calcs the totalt cost in cart */
   calcAmountInCart(): number {
 
     let sum = 0;
     if (this.productsInCart && this.productsInCart.length) {
       for (const productInCart of this.productsInCart) {
-        sum = sum + productInCart.price;
+        sum = sum + productInCart.amount;
       }
     }
 

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +13,8 @@ import { HomepageService, CategoriesService } from './homepage/homepage.service'
 import { ResourceService } from './shared/resource.service';
 import { HeaderComponent } from './shared/header/header.component';
 import { ProductsComponent } from './homepage/products/products.component';
+import { CheckoutService } from './checkout/checkout.service';
+import { AdminpageComponent } from './adminpage/adminpage.component';
 
 @NgModule({
   declarations: [
@@ -19,17 +22,21 @@ import { ProductsComponent } from './homepage/products/products.component';
     HomepageComponent,
     CheckoutComponent,
     HeaderComponent,
-    ProductsComponent
+    ProductsComponent,
+    AdminpageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     HomepageService,
     CategoriesService,
-    ResourceService
+    ResourceService,
+    CheckoutService
   ],
   bootstrap: [AppComponent]
 })

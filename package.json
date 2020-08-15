@@ -21,6 +21,7 @@
     "@angular/router": "~10.0.6",
     "bootstrap": "^4.5.2",
     "i": "^0.3.6",
+    "ngx-cookie-service": "^10.0.1",
     "npm": "^6.14.7",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

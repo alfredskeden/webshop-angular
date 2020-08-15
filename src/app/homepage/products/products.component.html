@@ -8,8 +8,10 @@
       <li>Price: ${{ product.price }}</li>
       <li>Genre: <span *ngFor="let genres of product.productCategory; let last = last">{{ genres.category }}{{ !last ? ', ' : '' }}</span></li>
     </ul>
-    <img class="img-fluid" [alt]="product.name" [src]="product.imageUrl">
-    <button type="button" class="btn" [ngClass]="{'btn-success': !product.hasBeenAddedToCart, 'btn-danger': product.hasBeenAddedToCart}" (click)="addToCart(product)">
+    <img class="img-fluid" [alt]="product.name" [src]="product.imageUrl" height="100" width="50">
+    <button type="button" class="btn"
+            [ngClass]="{'btn-success': !product.hasBeenAddedToCart, 'btn-danger': product.hasBeenAddedToCart}"
+            (click)="addToCart(product)">
       {{ product.hasBeenAddedToCart ? 'Remove from cart' : 'Add to cart' }}
     </button>
   </div>
