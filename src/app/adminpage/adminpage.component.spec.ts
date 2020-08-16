@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminpageComponent } from './adminpage.component';
+import { CheckoutService } from '../checkout/checkout.service';
 
 describe('AdminpageComponent', () => {
   let component: AdminpageComponent;
@@ -8,7 +9,8 @@ describe('AdminpageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminpageComponent ]
+      declarations: [ AdminpageComponent ],
+      providers: [ CheckoutService ]
     })
     .compileComponents();
   }));

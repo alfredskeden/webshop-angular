@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service'; 
 
@@ -24,8 +23,7 @@ export class HomepageComponent implements OnInit {
   constructor(
     private readonly categoryService: CategoriesService,
     private readonly homepageService: HomepageService,
-    private cookieService: CookieService,
-    private readonly router: Router
+    private cookieService: CookieService
     ) {
       this.productsInCart = this.cookieService.get('cart') ? JSON.parse(this.cookieService.get('cart')) : [];
     }

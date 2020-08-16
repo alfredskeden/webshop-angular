@@ -16,6 +16,9 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+    component.productsInCart = [];
+    component.categories = [];
+    component.amountInCart = 299;
     fixture.detectChanges();
   });
 
