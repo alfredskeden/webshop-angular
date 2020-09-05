@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminpageComponent } from './adminpage.component';
 import { CheckoutService } from '../checkout/checkout.service';
@@ -12,7 +12,7 @@ describe('AdminpageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule, RouterTestingModule ],
+      imports: [ HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule ],
       declarations: [ AdminpageComponent ],
       providers: [ CheckoutService, FormBuilder ]
     })

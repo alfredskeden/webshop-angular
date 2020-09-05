@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CheckoutService } from './checkout.service';
 
 
-fdescribe('CheckoutService', () => {
+describe('CheckoutService', () => {
   let service: CheckoutService;
 
   beforeEach(() => {
