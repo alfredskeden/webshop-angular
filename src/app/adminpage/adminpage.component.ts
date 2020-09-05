@@ -29,7 +29,7 @@ export class AdminpageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.checkoutService.read('?companyId=592838').subscribe(data => {
+    this.checkoutService.read('?companyId=794613').subscribe(data => {
       this.orders = data;
     }, err => { console.log(err)
     }, () => {
@@ -47,7 +47,7 @@ export class AdminpageComponent implements OnInit {
   /** Returns a list of orders with that name and email */
   get ordersFromName(): Array<Checkoutorder> {
 
-    if (this.searchForm.value.name === '592838') {
+    if (this.searchForm.value.name === '794613') {
       return this.orders;
     }
 

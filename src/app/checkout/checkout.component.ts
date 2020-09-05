@@ -57,7 +57,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     const order = new Checkoutorder();
-    order.companyId = 592838; //Random number that we have as companyId
+    order.companyId = 794613; //Random number that we have as companyId
     order.created = new Date().toISOString();
     order.createdBy = customerData.name + ' ' + customerData.email;
     order.paymentMethod = customerData.paymentMethod;
