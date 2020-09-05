@@ -44,6 +44,7 @@ export class HomepageComponent implements OnInit {
         console.log(err);
       }, () => {
 
+        /** if added has been done beforehand it has to set it again */
         this.setAllhasBeenAddedToCart();
 
         /** can be done sooo much better :D */
@@ -57,6 +58,7 @@ export class HomepageComponent implements OnInit {
           }
         }
 
+        /** when done setting loading to false to show the products */
         this.loading = false;
       });
     });
@@ -71,7 +73,7 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  /** adds the products to cart */
+  /** adds the products to cart, is being tested in homepage.component.spec.ts */
   addProductToCart(value): void {
 
     /** find index and removes it if it dosnt exist add it */
@@ -93,7 +95,7 @@ export class HomepageComponent implements OnInit {
     this.products.find(x => x.id === value.id).hasBeenAddedToCart = !this.products.find(x => x.id === value.id).hasBeenAddedToCart;
   }
 
-  /** Calcs the totalt cost in cart */
+  /** Calcs the totalt cost in cart, is being tested in homepage.component.spec.ts */
   calcAmountInCart(): number {
 
     let sum = 0;

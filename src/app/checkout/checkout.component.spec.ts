@@ -1,7 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormBuilder } from '@angular/forms';
 
 import { CheckoutComponent } from './checkout.component';
 import { CheckoutService } from './checkout.service';
+import { HomepageService } from '../homepage/homepage.service';
+
 
 describe('CheckoutComponent', () => {
   let component: CheckoutComponent;
@@ -9,8 +14,9 @@ describe('CheckoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule, RouterTestingModule ],
       declarations: [ CheckoutComponent ],
-      providers: [ CheckoutService ]
+      providers: [ CheckoutService, HomepageService, FormBuilder ]
     })
     .compileComponents();
   }));

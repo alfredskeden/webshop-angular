@@ -17,15 +17,18 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /** Emits the product to the add to cart function in homepage.componet.ts */
   addToCart(product: Array<any>): void {
     this.addToCartOutput.emit(product);
   }
 
+  /** Filters the products to the page if category has been chosen */
   get filterProducts(): Array<any> {
     return (this.products && this.products.length) ?
            this.products.filter(x => this.filteredProductsByCategory(x.name, x.productCategory)) : [];
   }
 
+  /** filter by products in category */
   filteredProductsByCategory(name: string, category: Array<any>): boolean {
 
     if (!name) {

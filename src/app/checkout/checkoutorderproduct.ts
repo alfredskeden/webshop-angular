@@ -1,6 +1,6 @@
 export class Checkoutorderproduct {
-    id: number;
+    id?: number;
     productId: number;
     amount: number;
-    orderId: number;
+    orderId?: number;
 }

@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormBuilder } from '@angular/forms';
 
 import { AdminpageComponent } from './adminpage.component';
 import { CheckoutService } from '../checkout/checkout.service';
@@ -9,8 +12,9 @@ describe('AdminpageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule, RouterTestingModule ],
       declarations: [ AdminpageComponent ],
-      providers: [ CheckoutService ]
+      providers: [ CheckoutService, FormBuilder ]
     })
     .compileComponents();
   }));
@@ -21,7 +25,7 @@ describe('AdminpageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create component', () => {
     expect(component).toBeTruthy();
   });
 });
