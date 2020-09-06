@@ -1,18 +1,26 @@
-<a [routerLink]="['/']">All products</a>
+<div class="bg-info h-70px sticky-top">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-6">
+        <h1 class="text-center align-middle">Kama webshop</h1>
+      </div>
+      <div class="col-4">
+        <span>{{ productsInCart.length }} products in checkout for ${{ amountInCart }}</span>
+        <br>
+        <a [routerLink]="'/check-out/'">Proceed to Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="row">
-  <div class="col-6">
-    <ul>
-      <li *ngFor="let category of filterByName; let i = index">
-        <!-- fix so the router doesnt go to wron when clicking here -->
-        <a [routerLink]="'/category/' + category.id">{{ category.name }}</a>
-      </li>
+<div class="row bg-white border-bottom">
+    <ul class="list-group list-group-horizontal w-100">
+      <a class="list-group-item list-group-item-action text-center" [routerLink]="['/']">All products</a>
+      <ng-container *ngFor="let category of filterByName; let i = index">
+        <!-- fix so the router doesnt go to wrong when clicking here -->
+        <a class="list-group-item list-group-item-action text-center"
+          [routerLink]="'/category/' + category.id">{{ category.name }}</a>
+      </ng-container>
     </ul>
-  </div>
-  <div class="col-6 justify-content-center">
-    <span>{{ productsInCart.length }} products in checkout for ${{ amountInCart }}</span>
-    <br>
-    <a [routerLink]="'/check-out/'">Proceed to Checkout</a>
-  </div>
 </div>
 
